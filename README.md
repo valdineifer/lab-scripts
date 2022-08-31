@@ -1,14 +1,14 @@
 # lab-scripts
 
-Para instalar o script de atualização na máquina, execute o seguinte comando:
+Para instalar o script de atualização na máquina, execute o seguinte comando **como usuário root**:
 
 ```
-wget -O - https://github.com/graco-ufba/lab-scripts/blob/main/install.sh | /bin/bash
+wget -O - https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/install.sh | /bin/bash
 ```
 
 O script `lab-startup.sh` será executado a cada inicialização da máquina.
 
-Para visualizar o log, execute:
+Após a instalação, reinicie a máquina e execute o seguinte comando para visulizar o log:
 
 ```
 journalctl -fu labstartup.service
