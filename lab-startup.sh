@@ -7,7 +7,7 @@ apt-get install -y vim python3-pip
 if id aluno &> /dev/null; then
   echo ok
 else
-  useradd --create-home --password "vivaoic2021!" --gecos "" -s /bin/bash aluno
+  useradd --create-home --password "vivaoic2021!" -s /bin/bash aluno
 fi
 echo "aluno:vivaoic2021!" | chpasswd
 
