@@ -27,4 +27,21 @@ echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true dpkg-reconfigure gdm3
 echo set shared/default-x-display-manager gdm3 | debconf-communicate
 
+# Instala o Android SDK e Android Studio
+if [[ ! -d /opt/Android ]]; then
+  wget https://nuvem.ufba.br/s/FjNaDukULOwHhs4/download -O /tmp/Android.tar.bz2
+  cd /opt
+  tar xjf /tmp/Android.tar.bz2
+  rm /tmp/Android.tar.bz2
+  cd /etc/skel
+  unlink Android
+  ln -s /opt/Android .
+fi
+if [[ ! -d /opt/android-studio ]]; then
+  wget https://nuvem.ufba.br/s/6BUVDGWKKMxR6Fj/download -O /tmp/android-studio.tar.bz2
+  cd /opt
+  tar xjf /tmp/android-studio.tar.bz2
+  rm /tmp/android-studio.tar.bz2
+fi
+
 exit 0
