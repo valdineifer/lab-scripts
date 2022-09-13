@@ -11,7 +11,7 @@ else
 fi
 echo "aluno:vivaoic2021!" | chpasswd
 
-# Apaga home do aluno após logout
+# Recria home do aluno logo após login
 echo '#!/bin/bash
 if [[ "$USER" == "aluno" ]]; then
         rm -rf /home/$USER
@@ -20,7 +20,8 @@ if [[ "$USER" == "aluno" ]]; then
         echo "aluno:vivaoic2021!" | chpasswd
 fi
 exit 0
-' > /etc/gdm3/PostSession/Default
+' > /etc/gdm3/PostLogin/Default
+echo '' > /etc/gdm3/PostSession/Default
 
 # Usa GDM como gerenciador de login
 echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
