@@ -3,6 +3,10 @@
 apt-get update -y
 apt-get install -y vim python3-pip
 
+# Pula configuração do Ubuntu pelo usuário novo
+mkdir -p /etc/skel/.config
+echo 'yes' > /etc/skel/.config/gnome-initial-setup-done
+
 # Cria usuário aluno e define senha
 if id aluno &> /dev/null; then
   echo ok
