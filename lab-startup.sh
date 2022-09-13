@@ -21,6 +21,7 @@ if [[ "$USER" == "aluno" ]]; then
 fi
 exit 0
 ' > /etc/gdm3/PostLogin/Default
+chmod a+x /etc/gdm3/PostLogin/Default
 echo '' > /etc/gdm3/PostSession/Default
 
 # Usa GDM como gerenciador de login
