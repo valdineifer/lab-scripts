@@ -1,7 +1,21 @@
 #!/bin/bash
 
+###################### Programas #####################
+# Sublime Text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+# Visual Studio Code
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+# OBS Studio
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+###
 apt-get update -y
-apt-get install -y vim python3-pip git
+apt-get install -y vim python3-pip git \
+  sublime-text code \
+  obs-studio v4l2loopback-dkms
 
 # Pula configuração do Ubuntu pelo usuário novo
 mkdir -p /etc/skel/.config
