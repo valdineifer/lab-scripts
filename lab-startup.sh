@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt-get update -y
-apt-get install -y vim python3-pip
+apt-get install -y vim python3-pip git
 
 # Pula configuração do Ubuntu pelo usuário novo
 mkdir -p /etc/skel/.config
