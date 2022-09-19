@@ -12,8 +12,8 @@ rm -f packages.microsoft.gpg
 # OBS Studio
 sudo add-apt-repository -y ppa:obsproject/obs-studio
 ## Mongodb
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+#wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+#echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 
 ### Apt-get
 apt-get update -y
@@ -22,7 +22,8 @@ apt-get install -y  \
   git \
   sublime-text code vim \
   obs-studio v4l2loopback-dkms \
-  mysql-server postgresql postgresql-contrib mongodb-org
+  mysql-server postgresql postgresql-contrib 
+  #mongodb-org
 ### Snaps
 sudo snap install eclipse --classic
 
