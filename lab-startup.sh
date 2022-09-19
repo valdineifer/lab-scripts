@@ -26,6 +26,7 @@ apt-get install -y  \
   #mongodb-org
 ### Snaps
 sudo snap install eclipse --classic
+sudo snap install intellij-idea-community --classic
 
 ##################################
 
