@@ -51,8 +51,8 @@ if [[ "$USER" == "aluno" ]]; then
         echo "aluno:vivaoic2021!" | chpasswd
         
         echo "DROP USER IF EXISTS '\''aluno'\''@'\''localhost'\''; CREATE USER '\''aluno'\''@'\''%'\'' IDENTIFIED BY '\''aluno'\''; GRANT ALL PRIVILEGES ON *.* TO '\''aluno'\''@'\''%'\'';" | mysql
-        sudo -u postgres dropuser aluno; sudo -u postgres createuser aluno
-        sudo -u postgres dropdb aluno; sudo -u postgres createdb aluno
+        sudo -u postgres dropuser --if-exists aluno; sudo -u postgres createuser aluno
+        sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
         echo "ALTER USER user_name WITH PASSWORD '\''aluno'\''; GRANT ALL PRIVILEGES ON DATABASE aluno to aluno;" | sudo -u postgres psql
 fi
 exit 0
