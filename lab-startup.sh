@@ -49,6 +49,8 @@ if [[ "$USER" == "aluno" ]]; then
         cp -r /etc/skel /home/$USER
         chown -R $USER:$USER /home/$USER
         echo "aluno:vivaoic2021!" | chpasswd
+        
+        echo "DROP USER \'aluno\'@\'localhost\'; CREATE USER \'aluno\'@\'%\' IDENTIFIED BY \'aluno\'; GRANT ALL PRIVILEGES ON *.* TO 'aluno'@'%';" | mysql
 fi
 exit 0
 ' > /etc/gdm3/PostLogin/Default
