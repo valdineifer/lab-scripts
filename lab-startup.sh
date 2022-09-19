@@ -18,7 +18,7 @@ sudo add-apt-repository -y ppa:obsproject/obs-studio
 ### Apt-get
 apt-get update -y
 apt-get install -y  \
-  python3-pip default-jre default-jdk \
+  python3-pip default-jre default-jdk maven \
   git \
   sublime-text code vim \
   obs-studio v4l2loopback-dkms \
