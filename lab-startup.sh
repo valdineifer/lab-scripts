@@ -11,9 +11,6 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packag
 rm -f packages.microsoft.gpg
 # OBS Studio
 sudo add-apt-repository -y ppa:obsproject/obs-studio
-## Mongodb
-#wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-#echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 
 ### Apt-get
 apt-get update -y
@@ -23,10 +20,10 @@ apt-get install -y  \
   sublime-text code vim \
   obs-studio v4l2loopback-dkms \
   mysql-server postgresql postgresql-contrib 
-  #mongodb-org
 ### Snaps
 sudo snap install eclipse --classic
 sudo snap install intellij-idea-community --classic
+sudo snap install mongo33
 
 ##################################
 
