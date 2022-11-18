@@ -17,7 +17,7 @@ apt-get update -y
 apt-get install -y  \
   python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp \
   git \
-  sublime-text code vim \
+  sublime-text code vim sasm \
   obs-studio v4l2loopback-dkms \
   mysql-server postgresql postgresql-contrib 
 ### Snaps
