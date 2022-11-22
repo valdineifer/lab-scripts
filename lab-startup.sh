@@ -15,7 +15,7 @@ sudo add-apt-repository -y ppa:obsproject/obs-studio
 ### Apt-get
 apt-get update -y
 apt-get install -y  \
-  python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm \
+  python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
   git \
   sublime-text code vim sasm \
   obs-studio v4l2loopback-dkms \
