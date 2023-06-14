@@ -1,31 +1,6 @@
 #!/bin/bash
 
-###################### Programas #####################
-# Sublime Text
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-# Visual Studio Code
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-# OBS Studio
-sudo add-apt-repository -y ppa:obsproject/obs-studio
-
-### Apt-get
-apt-get update -y
-apt-get install -y  \
-  python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
-  git \
-  sublime-text code vim sasm \
-  obs-studio v4l2loopback-dkms \
-  mysql-server postgresql postgresql-contrib 
-### Snaps
-sudo snap install eclipse --classic
-sudo snap install intellij-idea-community --classic
-sudo snap install mongo33
-
-##################################
+############### Criação do usuário aluno ###############
 
 # Pula configuração do Ubuntu pelo usuário novo
 mkdir -p /etc/skel/.config
@@ -57,10 +32,37 @@ exit 0
 chmod a+x /etc/gdm3/PostLogin/Default
 echo '' > /etc/gdm3/PostSession/Default
 
-# Usa GDM como gerenciador de login
-echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
-DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true dpkg-reconfigure gdm3
-echo set shared/default-x-display-manager gdm3 | debconf-communicate
+# Usa GDM como gerenciador de login (já é o padrão)
+#echo "/usr/sbin/gdm3" > /etc/X11/default-display-manager
+#DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true dpkg-reconfigure gdm3
+#echo set shared/default-x-display-manager gdm3 | debconf-communicate
+
+###################### Programas #####################
+# Sublime Text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+# Visual Studio Code
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+# OBS Studio
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+
+### Apt-get
+apt-get update -y
+apt-get install -y  \
+  python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
+  git \
+  sublime-text code vim sasm \
+  obs-studio v4l2loopback-dkms \
+  mysql-server postgresql postgresql-contrib 
+### Snaps
+sudo snap install eclipse --classic
+sudo snap install intellij-idea-community --classic
+sudo snap install mongo33
+
+##################################
 
 # Instala o Android SDK e Android Studio
 if [[ ! -d /opt/Android ]]; then
