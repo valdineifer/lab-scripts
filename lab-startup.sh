@@ -3,8 +3,10 @@
 ############### Criação do usuário aluno ###############
 
 # Pula configuração do Ubuntu pelo usuário novo
+rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
 mkdir -p /etc/skel/.config
 echo 'yes' > /etc/skel/.config/gnome-initial-setup-done
+
 
 # Cria usuário aluno e define senha
 if id aluno &> /dev/null; then
