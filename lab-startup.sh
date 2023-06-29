@@ -65,6 +65,14 @@ sudo snap install intellij-idea-community --classic
 sudo snap install mongo33
 sudo snap install flutter --classic
 
+# Google Chrome
+if ! command -v google-chrome &> /dev/null; then
+	cd /tmp
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	dpkg -i google-chrome-stable_current_amd64.deb
+	cd -
+fi
+
 ##################################
 
 # Instala o Android SDK e Android Studio
