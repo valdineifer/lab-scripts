@@ -63,7 +63,19 @@ apt-get install -y  \
 sudo snap install eclipse --classic
 sudo snap install intellij-idea-community --classic
 sudo snap install mongo33
-sudo snap install flutter --classic
+
+# Flutter
+# sudo snap install flutter --classic
+snap remove flutter
+echo 'export PATH="/opt/flutter/bin:$PATH"' >> /home/aluno/.bashrc
+# export PATH="/opt/flutter/bin:$PATH"
+if [ ! -d "/opt/flutter" ]; then
+  cd /opt
+  wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.5-stable.tar.xz -O /tmp/flutter.tar.xz
+  tar xf /tmp/flutter.tar.xz
+  chown -R aluno:aluno flutter
+  cd -
+fi
 
 # Google Chrome
 if ! command -v google-chrome &> /dev/null; then
