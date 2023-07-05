@@ -23,6 +23,10 @@ if [[ "$USER" == "aluno" ]]; then
         cp -r /etc/skel /home/$USER
         chown -R $USER:$USER /home/$USER
         echo "aluno:vivaoic2021!" | chpasswd
+
+ 	echo export PATH="/opt/flutter/bin:\$PATH" >> /home/aluno/.bashrc
+  	echo export PATH="/opt/android-studio/bin:/opt/Android/Sdk/platform-tools:\$PATH" >> /home/aluno/.bashrc
+  
         
         echo "DROP USER IF EXISTS '\''aluno'\''@'\''localhost'\''; CREATE USER '\''aluno'\''@'\''%'\'' IDENTIFIED BY '\''aluno'\''; GRANT ALL PRIVILEGES ON *.* TO '\''aluno'\''@'\''%'\'';" | mysql
         sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
@@ -67,8 +71,6 @@ sudo snap install mongo33
 # Flutter
 # sudo snap install flutter --classic
 snap remove flutter
-echo 'export PATH="/opt/flutter/bin:$PATH"' >> /home/aluno/.bashrc
-# export PATH="/opt/flutter/bin:$PATH"
 if [ ! -d "/opt/flutter" ]; then
   cd /opt
   wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.5-stable.tar.xz -O /tmp/flutter.tar.xz
