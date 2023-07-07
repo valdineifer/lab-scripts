@@ -7,6 +7,27 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
+# Configura rotação de logs
+
+cat <<EOF > /etc/logrotate.d/custom_logs
+/var/log/syslog /var/log/kern.log {
+    weekly
+    missingok
+    rotate 4
+    compress
+    delaycompress
+    notifempty
+    create 0644 root root
+    size 200M
+    sharedscripts
+    postrotate
+    endscript
+}
+EOF
+logrotate -f /etc/logrotate.d/custom_logs
+
+echo "Logrotate configuration has been set up successfully."
+
 ############### Criação do usuário aluno ###############
 
 # Pula configuração do Ubuntu pelo usuário novo
