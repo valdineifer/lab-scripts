@@ -90,7 +90,8 @@ apt-get install -y  \
   git \
   sublime-text code vim sasm \
   obs-studio v4l2loopback-dkms \
-  mysql-server postgresql postgresql-contrib 
+  mysql-server postgresql postgresql-contrib \
+  wireshark arp-scan net-tools mtr dnsutils
 ### Snaps
 sudo snap install eclipse --classic
 sudo snap install intellij-idea-community --classic
