@@ -96,6 +96,7 @@ apt-get install -y  \
 sudo snap install eclipse --classic
 sudo snap install intellij-idea-community --classic
 sudo snap install mongo33
+sudo snap install bluej
 
 # Flutter
 # sudo snap install flutter --classic
