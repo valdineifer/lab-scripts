@@ -86,6 +86,7 @@ rm -f packages.microsoft.gpg
 sudo add-apt-repository -y ppa:obsproject/obs-studio
 
 ### Apt-get
+DEBIAN_FRONTEND=noninteractive dpkg --configure -a
 apt-get update -y
 apt-get install -y  \
   python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
