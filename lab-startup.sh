@@ -89,12 +89,17 @@ sudo add-apt-repository -y ppa:obsproject/obs-studio
 apt-get update -y
 apt-get install -y  \
   python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
+  python3.11-full \
   git \
   flex bison \
   sublime-text code vim sasm \
   obs-studio v4l2loopback-dkms \
   mysql-server postgresql postgresql-contrib \
   wireshark arp-scan net-tools mtr dnsutils traceroute curl
+
+# Python
+update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
+
 ### Snaps
 sudo snap install eclipse --classic
 sudo snap install intellij-idea-community --classic
