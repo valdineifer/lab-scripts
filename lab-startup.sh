@@ -46,6 +46,9 @@ else
 fi
 echo "aluno:vivaoic2021!" | chpasswd
 
+#####################################################################################
+############### Script executado pelo usuário aluno logo após o login ###############
+#####################################################################################
 # Recria home do aluno logo após login
 echo '#!/bin/bash
 if [[ "$USER" == "aluno" ]]; then
@@ -57,6 +60,8 @@ if [[ "$USER" == "aluno" ]]; then
  	echo export PATH="/opt/flutter/bin:\$PATH" >> /home/aluno/.bashrc
   	echo export PATH="/opt/android-studio/bin:/opt/Android/Sdk/platform-tools:\$PATH" >> /home/aluno/.bashrc
   	rm -f /opt/flutter/bin/cache/lockfile
+
+   	ln -s /opt/gradle .gradle
         
         echo "DROP USER IF EXISTS '\''aluno'\''@'\''localhost'\''; CREATE USER '\''aluno'\''@'\''%'\'' IDENTIFIED BY '\''aluno'\''; GRANT ALL PRIVILEGES ON *.* TO '\''aluno'\''@'\''%'\'';" | mysql
         sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
@@ -144,6 +149,14 @@ if [[ ! -d /opt/android-studio ]]; then
   cd /opt
   tar xjf /tmp/android-studio.tar.bz2
   rm /tmp/android-studio.tar.bz2
+fi
+if [[ ! -d /opt/gradle ]]; then
+  wget https://nuvem.ufba.br/s/U5anBL3tRpN2xhT/download -O /tmp/gradle.tar.bz2
+  cd /opt
+  tar xjf /tmp/gradle.tar.bz2
+  mv .gradle gradle
+  chown -R aluno:aluno gradle
+  rm /tmp/gradle.tar.bz2
 fi
 
 exit 0
