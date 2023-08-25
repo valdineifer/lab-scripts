@@ -100,6 +100,7 @@ apt-get install -y  \
 
 # Python
 update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
+update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.10 2
 
 ### Snaps
 sudo snap install eclipse --classic
