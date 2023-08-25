@@ -136,7 +136,7 @@ fi
 
 # Instala o Android SDK e Android Studio
 if [[ ! -d /opt/Android ]]; then
-  wget https://nuvem.ufba.br/s/FjNaDukULOwHhs4/download -O /tmp/Android.tar.bz2
+  wget https://nuvem.ufba.br/s/FjNaDukULOwHhs4/download --no-check-certificate -O /tmp/Android.tar.bz2
   cd /opt
   tar xjf /tmp/Android.tar.bz2
   rm /tmp/Android.tar.bz2
@@ -145,13 +145,13 @@ if [[ ! -d /opt/Android ]]; then
   ln -s /opt/Android .
 fi
 if [[ ! -d /opt/android-studio ]]; then
-  wget https://nuvem.ufba.br/s/6BUVDGWKKMxR6Fj/download -O /tmp/android-studio.tar.bz2
+  wget https://nuvem.ufba.br/s/6BUVDGWKKMxR6Fj/download --no-check-certificate -O /tmp/android-studio.tar.bz2
   cd /opt
   tar xjf /tmp/android-studio.tar.bz2
   rm /tmp/android-studio.tar.bz2
 fi
 if [[ ! -d /opt/gradle ]]; then
-  wget https://nuvem.ufba.br/s/U5anBL3tRpN2xhT/download -O /tmp/gradle.tar.bz2
+  wget https://nuvem.ufba.br/s/U5anBL3tRpN2xhT/download --no-check-certificate -O /tmp/gradle.tar.bz2
   cd /opt
   tar xjf /tmp/gradle.tar.bz2
   mv .gradle gradle
