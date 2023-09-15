@@ -94,7 +94,7 @@ sudo add-apt-repository -y ppa:obsproject/obs-studio
 DEBIAN_FRONTEND=noninteractive dpkg --configure -a
 apt-get update -y
 apt-get install -y  \
-  python3-pip default-jre default-jdk maven swi-prolog racket elixir clisp nasm gcc-multilib \
+  python3-pip default-jre default-jdk maven nodejs swi-prolog racket elixir clisp nasm gcc-multilib \
   python3.11-full \
   git \
   flex bison \
