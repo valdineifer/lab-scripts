@@ -62,7 +62,7 @@ if [[ "$USER" == "aluno" ]]; then
   	rm -f /opt/flutter/bin/cache/lockfile
 
    	ln -s /opt/gradle /home/$USER/.gradle
-    	ln -s /opt/npm .npm
+    	ln -s /opt/npm /home/$USER/.npm
         
         echo "DROP USER IF EXISTS '\''aluno'\''@'\''localhost'\''; CREATE USER '\''aluno'\''@'\''%'\'' IDENTIFIED BY '\''aluno'\''; GRANT ALL PRIVILEGES ON *.* TO '\''aluno'\''@'\''%'\'';" | mysql
         sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
