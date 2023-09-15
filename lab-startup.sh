@@ -116,7 +116,7 @@ apt-get install nodejs -y
 mkdir -p /opt/npm
 chown -R aluno:aluno /opt/npm
 rm -f /etc/skel/.npm
-ln -s /opt/npm /etc/skel/npm
+ln -s /opt/npm /etc/skel/.npm
 
 # Python
 update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
