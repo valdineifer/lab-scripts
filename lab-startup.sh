@@ -101,7 +101,16 @@ apt-get install -y  \
   sublime-text code vim sasm \
   obs-studio v4l2loopback-dkms \
   mysql-server postgresql postgresql-contrib \
-  wireshark arp-scan net-tools mtr dnsutils traceroute curl
+  wireshark arp-scan net-tools mtr dnsutils traceroute curl \
+  gnupg ca-certificates
+
+# Node
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update
+apt-get install nodejs -y
 
 # Python
 update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
