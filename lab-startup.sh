@@ -62,6 +62,7 @@ if [[ "$USER" == "aluno" ]]; then
   	rm -f /opt/flutter/bin/cache/lockfile
 
    	ln -s /opt/gradle /home/$USER/.gradle
+    	ln -s /opt/npm .npm
         
         echo "DROP USER IF EXISTS '\''aluno'\''@'\''localhost'\''; CREATE USER '\''aluno'\''@'\''%'\'' IDENTIFIED BY '\''aluno'\''; GRANT ALL PRIVILEGES ON *.* TO '\''aluno'\''@'\''%'\'';" | mysql
         sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
@@ -111,6 +112,10 @@ NODE_MAJOR=20
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 apt-get update
 apt-get install nodejs -y
+#
+mkdir -p /opt/npm
+chown -R aluno:aluno /opt/npm
+
 
 # Python
 update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
