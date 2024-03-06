@@ -117,6 +117,8 @@ mkdir -p /opt/npm
 chown -R aluno:aluno /opt/npm
 rm -f /etc/skel/.npm
 ln -s /opt/npm /etc/skel/.npm
+# Pacotes Node
+npm install -g @angular/cli
 
 # Python
 update-alternatives --install /usr/bin/python3 python3  /usr/bin/python3.11 1
