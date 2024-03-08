@@ -112,7 +112,8 @@ sudo apt-get -f install -y
 
 #mongodb
 
-if [[! -d /usr/share/keyrings/mongodb-server-7.0.gpg]]; then
+if ! [ -f /etc/mongod.conf ]; then
+  echo "mongodb ja instalado"
   sudo apt-get install gnupg curl -y
   curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
     sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
@@ -194,6 +195,7 @@ if [[ ! -d /opt/android-studio ]]; then
   tar xjf /tmp/android-studio.tar.bz2
   rm /tmp/android-studio.tar.bz2
 fi
+
 if [[ ! -d /opt/gradle ]]; then
   wget https://nuvem.ufba.br/s/U5anBL3tRpN2xhT/download --no-check-certificate -O /tmp/gradle.tar.bz2
   cd /opt
@@ -201,6 +203,11 @@ if [[ ! -d /opt/gradle ]]; then
   mv .gradle gradle
   chown -R aluno:aluno gradle
   rm /tmp/gradle.tar.bz2
+fi
+
+if [ -f /etc/init.d/aluno.sh ]; then
+  rm /etc/init.d/aluno.sh
+  echo "aluno.sh removido"
 fi
 
 exit 0
