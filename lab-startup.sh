@@ -126,12 +126,16 @@ fi
 
 
 # RStudio
+
+if ! [ -f /usr/bin/rstudio ]; then
 sudo apt update -y
 sudo apt install r-base -y
 sudo apt install gdebi-core -y
 wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
 sudo gdebi -n rstudio-2023.12.1-402-amd64.deb
 rm rstudio-2023.12.1-402-amd64.deb
+
+fi
 
 # Node
 mkdir -p /etc/apt/keyrings
