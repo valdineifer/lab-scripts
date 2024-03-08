@@ -105,6 +105,30 @@ apt-get install -y  \
   wireshark arp-scan net-tools mtr dnsutils traceroute curl \
   gnupg ca-certificates
 
+#mysql workbench
+wget http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community_8.0.34-1ubuntu22.04_amd64.deb -O mysql-workbench-community.deb
+sudo dpkg -i mysql-workbench-community.deb
+sudo apt-get -f install -y
+
+#mongodb
+sudo apt-get install gnupg curl -y
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+sudo apt-get update -y
+sudo apt-get install -y mongodb-org -y
+
+
+
+# RStudio
+sudo apt update -y
+sudo apt install r-base -y
+sudo apt install gdebi-core -y
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
+sudo gdebi rstudio-2023.12.1-402-amd64.deb -y
+rm rstudio-2023.12.1-402-amd64.deb
+
 # Node
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg
