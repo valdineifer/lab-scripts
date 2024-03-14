@@ -173,6 +173,13 @@ if [ ! -d "/opt/flutter" ]; then
   cd -
 fi
 
+#Nand2Tetris
+sudo apt-get install unzip
+wget --no-check-certificate https://nuvem.ufba.br/s/ykUB6F81M5z2Ef1/download -O /opt/nand2tetris.zip
+cd /opt
+unzip nand2tetris.zip
+rm nand2tetris.zip
+
 # Google Chrome
 if ! command -v google-chrome &> /dev/null; then
 	cd /tmp
