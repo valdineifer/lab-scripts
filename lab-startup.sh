@@ -52,6 +52,7 @@ echo "aluno:vivaoic2021!" | chpasswd
 # Recria home do aluno logo após login
 echo '#!/bin/bash
 if [[ "$USER" == "aluno" ]]; then
+	gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
         rm -rf /home/$USER
         cp -r /etc/skel /home/$USER
         chown -R $USER:$USER /home/$USER
