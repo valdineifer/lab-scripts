@@ -33,6 +33,13 @@ echo "Logrotate configuration has been set up successfully."
 ############### Criação do usuário aluno ###############
 
 # Pula configuração do Ubuntu pelo usuário novo
+wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
+sudo touch /etc/skel/set-wallpaper.sh
+echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png" >> /etc/skel/set-wallpaper.sh
+chmod +x /etc/skel/set-wallpaper.sh
+echo "~/set-wallpaper.sh" >> /etc/skel/.profile
+
+
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
 mkdir -p /etc/skel/.config
 echo 'yes' > /etc/skel/.config/gnome-initial-setup-done
@@ -52,14 +59,13 @@ echo "aluno:vivaoic2021!" | chpasswd
 # Recria home do aluno logo após login
 echo '#!/bin/bash
 if [[ "$USER" == "aluno" ]]; then
-        wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
-	      gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
+        
         rm -rf /home/$USER
         cp -r /etc/skel /home/$USER
         chown -R $USER:$USER /home/$USER
         echo "aluno:vivaoic2021!" | chpasswd
 
- 	echo export PATH="/opt/flutter/bin:\$PATH" >> /home/aluno/.bashrc
+ 	  echo export PATH="/opt/flutter/bin:\$PATH" >> /home/aluno/.bashrc
   	echo export PATH="/opt/android-studio/bin:/opt/Android/Sdk/platform-tools:\$PATH" >> /home/aluno/.bashrc
   	rm -f /opt/flutter/bin/cache/lockfile
 
