@@ -32,14 +32,23 @@ echo "Logrotate configuration has been set up successfully."
 
 ############### Criação do usuário aluno ###############
 
-# Pula configuração do Ubuntu pelo usuário novo
+#define a logo da tomorrow como wallpaper em novos usuários
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
 sudo touch /etc/skel/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png" >> /etc/skel/set-wallpaper.sh
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
 
+#desabilita o power management do sistema
+sudo touch /etc/skel/set-power_management.sh
+echo "gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'" >> /etc/skel/set-power_management.sh
+chmod +x /etc/skel/set-power_management.sh
+echo "~/set-power_management.sh" >> /etc/skel/.profile
 
+# Pula configuração do Ubuntu pelo usuário novo
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
 mkdir -p /etc/skel/.config
 echo 'yes' > /etc/skel/.config/gnome-initial-setup-done
