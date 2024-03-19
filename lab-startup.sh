@@ -36,7 +36,7 @@ echo "Logrotate configuration has been set up successfully."
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
 sudo touch /etc/skel/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
-gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
 " >> /etc/skel/set-wallpaper.sh
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
