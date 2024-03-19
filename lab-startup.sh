@@ -39,15 +39,6 @@ echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/b
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
 
-#desabilita o power management do sistema
-sudo touch /etc/skel/set-power_management.sh
-echo "gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'" >> /etc/skel/set-power_management.sh
-chmod +x /etc/skel/set-power_management.sh
-echo "~/set-power_management.sh" >> /etc/skel/.profile
-
 # Pula configuração do Ubuntu pelo usuário novo
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
 mkdir -p /etc/skel/.config
