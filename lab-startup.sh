@@ -113,7 +113,8 @@ apt-get install -y  \
   obs-studio v4l2loopback-dkms \
   mysql-server postgresql postgresql-contrib \
   wireshark arp-scan net-tools mtr dnsutils traceroute curl \
-  gnupg ca-certificates
+  gnupg ca-certificates \
+  podman
 
 #mysql workbench
 wget http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community_8.0.34-1ubuntu22.04_amd64.deb -O mysql-workbench-community.deb
