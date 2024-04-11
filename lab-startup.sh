@@ -78,6 +78,7 @@ if [[ "$USER" == "aluno" ]]; then
         sudo -u postgres dropdb --if-exists aluno; sudo -u postgres createdb aluno
         sudo -u postgres dropuser --if-exists aluno; sudo -u postgres createuser aluno
         echo "ALTER USER aluno WITH PASSWORD '\''aluno'\''; GRANT ALL PRIVILEGES ON DATABASE aluno to aluno;" | sudo -u postgres psql
+        sudo service mysqld start
 fi
 exit 0
 ' > /etc/gdm3/PostLogin/Default
