@@ -37,19 +37,13 @@ wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLd
 sudo touch /etc/skel/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'shutdown'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
-" >> /etc/skel/set-wallpaper.sh
+" > /etc/skel/set-wallpaper.sh
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
 
-sudo touch /etc/profile.d/autologout.sh
-echo "TMOUT = 3600
-readonly TMOUT
-export TMOUT
-" >> /etc/profile.d/autologout.sh
-sudo chmod 0755 /etc/profile.d/autologout.sh
-source /etc/profile.d/autologout.sh
+if ! [ -f /etc/profile.d/autologout.sh ]; then
+rm -f /etc/profile.d/autologout.sh
+fi
 
 # Pula configuração do Ubuntu pelo usuário novo
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
@@ -198,11 +192,13 @@ if [ ! -d "/opt/flutter" ]; then
 fi
 
 #Nand2Tetris
+if [ ! -d "/opt/nand2tetris" ]; then
 sudo apt-get install unzip
 wget --no-check-certificate https://nuvem.ufba.br/s/ykUB6F81M5z2Ef1/download -O /opt/nand2tetris.zip
 cd /opt
 unzip nand2tetris.zip
 rm nand2tetris.zip
+fi
 
 # Google Chrome
 if ! command -v google-chrome &> /dev/null; then
