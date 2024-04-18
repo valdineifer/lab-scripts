@@ -37,6 +37,8 @@ wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLd
 sudo touch /etc/skel/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'shutdown'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
 " > /etc/skel/set-wallpaper.sh
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
