@@ -41,6 +41,13 @@ gsettings set org.gnome.desktop.session idle-delay 0
 chmod +x /etc/skel/set-wallpaper.sh
 echo "~/set-wallpaper.sh" >> /etc/skel/.profile
 
+sudo touch /etc/profile.d/autologout.sh
+echo "TMOUT = 3600
+      readonly TMOUT
+      export TMOUT" >> /etc/profile.d/autologout.sh
+sudo chmod 0755 /etc/profile.d/autologout.sh
+source /etc/profile.d/autologout.sh
+
 # Pula configuração do Ubuntu pelo usuário novo
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
 mkdir -p /etc/skel/.config
