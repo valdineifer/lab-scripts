@@ -157,6 +157,9 @@ wget http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community_8.0.
 sudo dpkg -i mysql-workbench-community.deb
 sudo apt-get -f install -y
 
+#wine
+sudo apt install wine64 -y
+
 #mongodb
 
 if ! [ -f /etc/mongod.conf ]; then
