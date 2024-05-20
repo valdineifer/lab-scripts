@@ -87,6 +87,9 @@ if [[ "$USER" == "aluno" ]]; then
         sudo -u mysql create user 'aluno'@'localhost' identified by 'aluno';
         sudo -u grant all privileges on *.* to 'aluno'@'localhost';
 fi
+
+python3 $inventory_path/src/inventory.py $inventory_url &> /var/log/inventory.log
+
 exit 0
 ' > /etc/gdm3/PostLogin/Default
 chmod a+x /etc/gdm3/PostLogin/Default
