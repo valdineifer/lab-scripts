@@ -21,5 +21,3 @@ WantedBy=multi-user.target
 
 sudo systemctl daemon-reload
 sudo systemctl enable labstartup.service
-
-bash inventory_install.sh
