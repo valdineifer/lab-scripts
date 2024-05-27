@@ -60,6 +60,21 @@ else
 fi
 echo "aluno:vivaoic2021!" | chpasswd
 
+
+###### Instalação do script de inventário ######
+if ! [ -d /etc/gdm3/PostLogin/inventory_script-master ]; then
+  wget -O inventory.zip https://github.com/valdineifer/inventory_script/archive/refs/heads/master.zip
+  unzip -o inventory.zip -d /etc/gdm3/PostLogin
+
+  if [ -f /etc/gdm3/PostLogin/Default ]; then
+    mv /etc/gdm3/PostLogin/Default /etc/gdm3/PostLogin/Default.bkp
+  fi
+
+  inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
+
+  pip install -r "$inventory_path/src/requirements.txt"
+fi
+
 #####################################################################################
 ############### Script executado pelo usuário aluno logo após o login ###############
 #####################################################################################
@@ -88,6 +103,8 @@ if [[ "$USER" == "aluno" ]]; then
         sudo -u grant all privileges on *.* to 'aluno'@'localhost';
 fi
 
+inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
+inventory_url='https://inventory-server-ivory.vercel.app/inventory'
 python3 $inventory_path/src/inventory.py $inventory_url &> /var/log/inventory.log
 
 exit 0
