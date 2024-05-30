@@ -66,10 +66,6 @@ if ! [ -d /etc/gdm3/PostLogin/inventory_script-master ]; then
   wget -O inventory.zip https://github.com/valdineifer/inventory_script/archive/refs/heads/master.zip
   unzip -o inventory.zip -d /etc/gdm3/PostLogin
 
-  if [ -f /etc/gdm3/PostLogin/Default ]; then
-    mv /etc/gdm3/PostLogin/Default /etc/gdm3/PostLogin/Default.bkp
-  fi
-
   inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
 
   pip install -r "$inventory_path/src/requirements.txt"
