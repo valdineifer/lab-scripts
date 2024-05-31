@@ -60,17 +60,6 @@ else
 fi
 echo "aluno:vivaoic2021!" | chpasswd
 
-
-###### Instalação do script de inventário ######
-if ! [ -d /etc/gdm3/PostLogin/inventory_script-master ]; then
-  wget -O inventory.zip https://github.com/valdineifer/inventory_script/archive/refs/heads/master.zip
-  unzip -o inventory.zip -d /etc/gdm3/PostLogin
-
-  inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
-
-  pip install -r "$inventory_path/src/requirements.txt"
-fi
-
 #####################################################################################
 ############### Script executado pelo usuário aluno logo após o login ###############
 #####################################################################################
@@ -260,5 +249,22 @@ if [ -f /etc/init.d/aluno.sh ]; then
   rm /etc/init.d/aluno.sh
   echo "aluno.sh removido"
 fi
+
+###### Instalação do script de inventário ######
+if ! [ -d /etc/gdm3/PostLogin/inventory_script-master ]; then
+  wget -O inventory.zip https://github.com/valdineifer/inventory_script/archive/refs/heads/master.zip
+  unzip -o inventory.zip -d /etc/gdm3/PostLogin
+
+  inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
+
+  pip install -r "$inventory_path/src/requirements.txt"
+fi
+
+# if ! [ -d /etc/gdm3/PostLogin/inventory_script ]; then
+#   git clone https://github.com/valdineifer/inventory_script.git /etc/gdm3/PostLogin/inventory_script
+#   inventory_path="/etc/gdm3/PostLogin/inventory_script"
+#   pip install -r "$inventory_path/src/requirements.txt"
+# else
+#   git 
 
 exit 0
