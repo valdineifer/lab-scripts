@@ -9,6 +9,12 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
+#configura dns ipv4
+
+device=$(nmcli -t -f Name c show --active)
+nmcli connection modify "$device" ipv4.dns ""
+echo "Conexão:${device}"
+
 # Configura rotação de logs
 
 cat <<EOF > /etc/logrotate.d/custom_logs
@@ -32,8 +38,25 @@ echo "Logrotate configuration has been set up successfully."
 
 ############### Criação do usuário aluno ###############
 
+
 #define a logo da tomorrow como wallpaper em novos usuários
+
+if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
+fi
+
+ARQUIVO="/etc/skel/.profile"
+CONTEUDO="~/set-wallpaper.sh"
+
+if ! grep -q "$CONTEUDO" "$ARQUIVO"; then
+    echo "$CONTEUDO" >> "$ARQUIVO"
+    echo "Conteúdo adicionado com sucesso!"
+else
+    echo "O conteúdo já existe no arquivo."
+fi
+
+
+if ! [ -f /etc/skel/set-wallpaper.sh ]; then
 sudo touch /etc/skel/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -41,8 +64,9 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'sh
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
 " > /etc/skel/set-wallpaper.sh
 chmod +x /etc/skel/set-wallpaper.sh
+fi
 
-if ! [ -f /etc/profile.d/autologout.sh ]; then
+if  [ -f /etc/profile.d/autologout.sh ]; then
 sudo rm -f /etc/profile.d/autologout.sh
 fi
 
