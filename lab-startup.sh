@@ -12,6 +12,7 @@ sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 #configura dns ipv4
 
 device=$(nmcli -t -f Name c show --active)
+nmcli connection modify "$device" ipv4.method auto
 nmcli connection modify "$device" ipv4.dns ""
 echo "Conexão:${device}"
 
