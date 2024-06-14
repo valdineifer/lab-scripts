@@ -274,12 +274,15 @@ fi
 #
 sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
-if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
+if [ "$SBDISABLED" = "SecureBoot disabled" || [[ ! -d /opt/Linux ]]; then
     sudo apt-get install virtualbox
     pip install gdown
+    pip install --upgrade --no-cache-dir gdown
     wget https://raw.githubusercontent.com/bertolima/run-vm-labs/main/run.py -O /tmp/run.py
     python3 /tmp/run.py
-    vboxmanage import /tmp/Linux.ova --vsys 0 --basefolder "/opt"
+    if [ -f /tmp/Linux.ova ]; then
+        vboxmanage import /tmp/Linux.ova --vsys 0 --basefolder "/opt"
+    fi
 fi
 
 exit 0
