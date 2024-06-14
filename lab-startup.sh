@@ -279,7 +279,7 @@ if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
     pip install gdown
     wget https://raw.githubusercontent.com/bertolima/run-vm-labs/main/run.py -O /tmp/run.py
     python3 /tmp/run.py
-    vboxmanage import Linux.ova --vsys 0 --basefolder "/opt"
+    vboxmanage import /tmp/Linux.ova --vsys 0 --basefolder "/opt"
 fi
 
 exit 0
