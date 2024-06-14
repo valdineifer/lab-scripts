@@ -276,7 +276,7 @@ sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
 if [ "$SBDISABLED" = "SecureBoot disabled" || [[ ! -d /opt/Linux ]]; then
     sudo apt-get install virtualbox
-    pip install gdown
+    pip install gdown==4.6.0 
     pip install --upgrade --no-cache-dir gdown
     wget https://raw.githubusercontent.com/bertolima/run-vm-labs/main/run.py -O /tmp/run.py
     python3 /tmp/run.py
