@@ -271,4 +271,15 @@ if [ -f /etc/init.d/aluno.sh ]; then
   echo "aluno.sh removido"
 fi
 
+#
+sudo apt-get install mokutil
+SBDISABLED=$(mokutil --sb)
+if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
+    sudo apt-get install virtualbox
+    pip install gdown
+    wget https://raw.githubusercontent.com/bertolima/run-vm-labs/main/run.py -O /tmp/run.py
+    python3 /tmp/run.py
+    vboxmanage import Linux.ova --vsys 0 --basefolder "/opt"
+fi
+
 exit 0
