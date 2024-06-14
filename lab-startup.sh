@@ -16,7 +16,7 @@ nmcli connection modify "$device" ipv4.method auto
 nmcli connection modify "$device" ipv4.dns ""
 echo "Conexão:${device}"
 
-# Configura rotação de logs
+# Configura rotação de logs teste
 
 cat <<EOF > /etc/logrotate.d/custom_logs
 /var/log/syslog /var/log/kern.log {
