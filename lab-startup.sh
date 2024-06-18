@@ -274,11 +274,11 @@ fi
 #
 sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
-if [ "$SBDISABLED" = "SecureBoot disabled" || [[ ! -d /opt/Linux ]]; then
+if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
     sudo apt-get install virtualbox
-    if [ -f /home/luis/Downloads/Linux.ova ]; then
+    if [ -f /home/luis/Downloads/Linux.ova && [[ ! -d /opt/Linux ]]; then
         vboxmanage import /home/luis/Downloads/Linux.ova --vsys 0 --basefolder "/opt"
-	chmod -R 777 /opt/Linux
+	chown -R aluno:aluno /opt/Linux
     fi
 fi
 
