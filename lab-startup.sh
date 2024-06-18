@@ -278,6 +278,7 @@ if [ "$SBDISABLED" = "SecureBoot disabled" || [[ ! -d /opt/Linux ]]; then
     sudo apt-get install virtualbox
     if [ -f /home/luis/Downloads/Linux.ova ]; then
         vboxmanage import /home/luis/Downloads/Linux.ova --vsys 0 --basefolder "/opt"
+	chmod -R 777 /opt/Linux
     fi
 fi
 
