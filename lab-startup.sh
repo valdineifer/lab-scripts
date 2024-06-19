@@ -57,8 +57,8 @@ if ! [ -f /etc/profile.d/config_display.sh ]; then
 sudo touch /etc/profile.d/condif_display.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'logout'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 90
-gsettings set org.gnome.desktop.session idle-delay 
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 60
+gsettings set org.gnome.desktop.session idle-delay 0
 " > /etc/profile.d/config_display.sh
 chmod a+x /etc/profile.d/config_display.sh
 fi
@@ -66,7 +66,7 @@ fi
 #Configuração de desligamento das máquinas
 PATH_TO_SHUTDOWN=$(which shutdown)
 TARGET_HOUR="00 14 * * * "$PATH_TO_SHUTDOWN" -h 60"
-if [ grep -q "$TARGET_HOUR" /etc/crontab ]; then
+if ! [ grep -q "$TARGET_HOUR" /etc/crontab ]; then
 echo "$TARGET_HOUR" >> /etc/crontab
 fi
 
