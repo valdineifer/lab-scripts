@@ -39,29 +39,37 @@ echo "Logrotate configuration has been set up successfully."
 
 ############### Criação do usuário aluno ###############
 
-
-#define a logo da tomorrow como wallpaper em novos usuários
-
+#Removendo lixo
 if [ -f /etc/skel/set-wallpaper.sh ]; then
 rm /etc/skel/set-wallpaper.sh
-fi
-
-if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
-wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
-fi
-
-if ! [ -f /etc/profile.d/set-wallpaper.sh ]; then
-sudo touch /etc/profile.d/set-wallpaper.sh
-echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'shutdown'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 180
-" > /etc/profile.d/set-wallpaper.sh
-chmod +x /etc/profile.d/set-wallpaper.sh
 fi
 
 if  [ -f /etc/profile.d/autologout.sh ]; then
 sudo rm -f /etc/profile.d/autologout.sh
 fi
+
+#Configuração do display
+if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
+wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
+fi
+
+if ! [ -f /etc/profile.d/config_display.sh ]; then
+sudo touch /etc/profile.d/condif_display.sh
+echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'logout'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 90
+gsettings set org.gnome.desktop.session idle-delay 
+" > /etc/profile.d/config_display.sh
+chmod a+x /etc/profile.d/config_display.sh
+fi
+
+#Configuração de desligamento das máquinas
+PATH_TO_SHUTDOWN=$(which shutdown)
+TARGET_HOUR="00 14 * * * "$PATH_TO_SHUTDOWN" -h 60"
+if [ grep -q "$TARGET_HOUR" /etc/crontab ]; then
+echo "$TARGET_HOUR" >> /etc/crontab
+fi
+
 
 # Pula configuração do Ubuntu pelo usuário novo
 rm -f /usr/share/applications/gnome-online-accounts-panel.desktop
