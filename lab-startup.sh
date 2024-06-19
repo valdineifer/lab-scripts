@@ -42,6 +42,10 @@ echo "Logrotate configuration has been set up successfully."
 
 #define a logo da tomorrow como wallpaper em novos usuários
 
+if [ -f /etc/skel/set-wallpaper.sh ]; then
+rm /etc/skel/set-wallpaper.sh
+fi
+
 if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
 fi
@@ -49,9 +53,8 @@ fi
 if ! [ -f /etc/profile.d/set-wallpaper.sh ]; then
 sudo touch /etc/profile.d/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
-gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'shutdown'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 180
 " > /etc/profile.d/set-wallpaper.sh
 chmod +x /etc/profile.d/set-wallpaper.sh
 fi
