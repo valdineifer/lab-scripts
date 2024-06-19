@@ -65,9 +65,10 @@ fi
 
 #Configuração de desligamento das máquinas
 PATH_TO_SHUTDOWN=$(which shutdown)
-TARGET_HOUR="20 14 * * * "$PATH_TO_SHUTDOWN" -h 60"
+TARGET_HOUR="48 14 * * * "$PATH_TO_SHUTDOWN" -h 60"
+echo "$(crontab -l ; echo  '"$TARGET_HOUR"')" | crontab -
 if ! [ grep -q "$TARGET_HOUR" /etc/crontab ]; then
-echo "$(crontab -l ; echo  "$TARGET_HOUR")" | crontab -
+echo "$(crontab -l ; echo  '49 14 * * * "$PATH_TO_SHUTDOWN" -h 60')" | crontab -
 fi
 
 
