@@ -46,25 +46,14 @@ if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
 fi
 
-ARQUIVO="/etc/skel/.profile"
-CONTEUDO="~/set-wallpaper.sh"
-
-if ! grep -q "$CONTEUDO" "$ARQUIVO"; then
-    echo "$CONTEUDO" >> "$ARQUIVO"
-    echo "Conteúdo adicionado com sucesso!"
-else
-    echo "O conteúdo já existe no arquivo."
-fi
-
-
-if ! [ -f /etc/skel/set-wallpaper.sh ]; then
-sudo touch /etc/skel/set-wallpaper.sh
+if ! [ -f /etc/profile.d/set-wallpaper.sh ]; then
+sudo touch /etc/profile.d/set-wallpaper.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'shutdown'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
-" > /etc/skel/set-wallpaper.sh
-chmod +x /etc/skel/set-wallpaper.sh
+" > /etc/profile.d/set-wallpaper.sh
+chmod +x /etc/profile.d/set-wallpaper.sh
 fi
 
 if  [ -f /etc/profile.d/autologout.sh ]; then
