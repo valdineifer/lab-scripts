@@ -67,7 +67,7 @@ fi
 PATH_TO_SHUTDOWN=$(which shutdown)
 TARGET_HOUR="00 14 * * * "$PATH_TO_SHUTDOWN" -h 60"
 if ! [ grep -q "$TARGET_HOUR" /etc/crontab ]; then
-echo "$TARGET_HOUR" >> /etc/crontab
+(crontab -l; echo "$TARGET_HOUR")|awk '!x[$0]++'|crontab -
 fi
 
 
