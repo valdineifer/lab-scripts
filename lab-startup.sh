@@ -66,6 +66,7 @@ fi
 #Configuração de desligamento das máquinas
 PATH_TO_SHUTDOWN=$(which shutdown)
 TARGET_HOUR="03 15* * * "$PATH_TO_SHUTDOWN" -h 60"
+echo "comando teste" >> /etc/crontab
 touch /tmp/shutdown.txt
 echo "$TARGET_HOUR" > /tmp/shutdown.txt
 sudo crontab < /tmp/shutdown.txt
