@@ -65,8 +65,7 @@ fi
 
 #Configuração de desligamento das máquinas
 PATH_TO_SHUTDOWN=$(which shutdown)
-TARGET_HOUR="30 22 * * * root "$PATH_TO_SHUTDOWN" -h now"
-echo "05 11 * * * root /usr/sbin/shutdown -h 1" >> /etc/crontab
+TARGET_HOUR="33 22 * * * root "$PATH_TO_SHUTDOWN" -h now"
 echo "$TARGET_HOUR" >> /etc/crontab
 
 
