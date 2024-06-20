@@ -66,7 +66,12 @@ fi
 #Configuração de desligamento das máquinas
 PATH_TO_SHUTDOWN=$(which shutdown)
 TARGET_HOUR="33 22 * * * root "$PATH_TO_SHUTDOWN" -h now"
-echo "$TARGET_HOUR" >> /etc/crontab
+FILE="/etc/crontab"
+
+if ! grep -q -x -F "$TARGET_HOUR" "$FILE"
+then
+        echo "$TARGET_HOUR" >> /etc/crontab
+fi
 
 
 # Pula configuração do Ubuntu pelo usuário novo
