@@ -290,7 +290,7 @@ if ! [ -f /usr/bin/dumpcap ]; then
 sudo touch /tmp/wire.sh
 echo "#!/bin/bash
 
-echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
+sudo debconf-set-selections <<< "wireshark-common wireshark-common/install-setuid select "true""
 sudo apt install wireshark -y
 sudo usermod -aG wireshark aluno
 sudo chmod +x /usr/bin/dumpcap
