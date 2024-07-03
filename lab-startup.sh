@@ -288,7 +288,11 @@ fi
 #wireshark
 if ! [ -f /usr/bin/dumpcap ]; then
 echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
+SEL=$(sudo debconf-show wireshark-common)
+echo "$SEL"
 sudo apt install wireshark -y
+SELE=$(sudo debconf-show wireshark-common)
+echo "$SELE"
 sudo usermod -aG wireshark aluno
 sudo chmod +x /usr/bin/dumpcap
 fi
