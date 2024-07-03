@@ -57,7 +57,7 @@ if ! [ -f /etc/profile.d/config_display.sh ]; then
 sudo touch /etc/profile.d/confif_display.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'logout'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 60
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
 gsettings set org.gnome.desktop.session idle-delay 0
 " > /etc/profile.d/config_display.sh
 chmod a+x /etc/profile.d/config_display.sh
@@ -274,7 +274,7 @@ if [ -f /etc/init.d/aluno.sh ]; then
   echo "aluno.sh removido"
 fi
 
-#
+# VirtualBox
 sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
 if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
@@ -283,6 +283,14 @@ if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
         vboxmanage import /home/luis/Downloads/Linux.ova --vsys 0 --basefolder "/opt"
 	chown -R aluno:aluno /opt/Linux
     fi
+fi
+
+#wireshark
+if ! [ -f /usr/bin/dumpcap ]; then
+echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
+sudo apt install wireshark
+sudo usermod -aG wireshark aluno
+sudo chmod +x /usr/bin/dumpcap
 fi
 
 exit 0
