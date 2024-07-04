@@ -288,21 +288,6 @@ fi
 #wireshark
 if ! [ -f /usr/bin/dumpcap ]; then
 sudo touch /usr/local/sbin/wire.sh
-echo "#!/bin/bash
-
-export DEBIAN_FRONTEND=dialog
-
-if ! [ -f /usr/bin/dumpcap ]; then
-echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
-sudo apt install wireshark -y
-sudo usermod -aG wireshark aluno
-sudo chmod +x /usr/bin/dumpcap
-fi
-
-exit
-" > /usr/local/sbin/wire.sh
-chmod a+x /usr/local/sbin/wire.sh
-echo "@reboot /usr/local/sbin/wire.sh" >> /etc/crontab
 fi
 
 exit 0
