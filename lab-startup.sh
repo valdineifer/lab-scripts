@@ -286,7 +286,12 @@ if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
 fi
 
 #wireshark
-if ! [ -f /usr/bin/dumpcap ]; then
+if ! [ -f /usr/local/sbin/wire.sh ]; then
+sudo apt remove wireshark -y
+sudo apt autoremove -y
+echo PURGE | sudo debconf-communicate wireshark-common
+
+sudo touch /usr/local/sbin/wire.sh
 echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
 sudo apt install wireshark -y
 sudo usermod -aG wireshark aluno
