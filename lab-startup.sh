@@ -287,7 +287,7 @@ fi
 
 #wireshark
 if ! [ -f /usr/bin/dumpcap ]; then
-sudo touch /tmp/wire.sh
+sudo touch /usr/local/sbin/wire.sh
 echo "#!/bin/bash
 
 export DEBIAN_FRONTEND=dialog
@@ -300,9 +300,9 @@ sudo chmod +x /usr/bin/dumpcap
 fi
 
 exit
-" > /tmp/wire.sh
-chmod a+x /tmp/wire.sh
-/tmp/wire.sh
+" > /usr/local/sbin/wire.sh
+chmod a+x /usr/local/sbin/wire.sh
+echo "@reboot /usr/local/sbin/wire.sh" >> /etc/crontab
 fi
 
 exit 0
