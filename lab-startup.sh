@@ -290,12 +290,16 @@ if ! [ -f /usr/bin/dumpcap ]; then
 sudo touch /tmp/wire.sh
 echo "#!/bin/bash
 
+export DEBIAN_FRONTEND=dialog
+
+if ! [ -f /usr/bin/dumpcap ]; then
+echo wireshark-common wireshark-common/install-setuid select "true" | sudo debconf-set-selections
 sudo apt install wireshark -y
 sudo usermod -aG wireshark aluno
 sudo chmod +x /usr/bin/dumpcap
-sudo debconf-set-selections <<< "wireshark-common wireshark-common/install-setuid select "true""
-sudo dpkg-reconfigure -fnoninteractive wireshark-common
+fi
 
+exit
 " > /tmp/wire.sh
 chmod a+x /tmp/wire.sh
 /tmp/wire.sh
