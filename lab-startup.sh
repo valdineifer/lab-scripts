@@ -314,8 +314,9 @@ DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
 sudo apt install -f -y
 DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
 sudo rm cisco.deb
-wget "https://drive.google.com/uc?export=download&id=1L01Mg96hWRpeI9LNOqzugmsSod7vza0O" -O /etc/skel/pt.zip
-unzip /etc/skel/pt.zip
+sudo wget "https://drive.google.com/uc?export=download&id=1L01Mg96hWRpeI9LNOqzugmsSod7vza0O" -O /etc/skel/pt.zip
+cd /etc/skel
+sudo unzip pt.zip
 sudo rm /etc/skel/pt.zip
 
 fi
