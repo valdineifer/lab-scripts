@@ -115,6 +115,7 @@ if [[ "$USER" == "aluno" ]]; then
         sudo service mysqld start
         sudo -u mysql create user 'aluno'@'localhost' identified by 'aluno';
         sudo -u grant all privileges on *.* to 'aluno'@'localhost';
+	
 fi
 exit 0
 ' > /etc/gdm3/PostLogin/Default
@@ -312,6 +313,10 @@ DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
 sudo apt install -f -y
 DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
 sudo rm cisco.deb
+wget "https://drive.google.com/uc?export=download&id=1L01Mg96hWRpeI9LNOqzugmsSod7vza0O" -O /etc/skel/pt.zip
+unzip /etc/skel/pt.zip
+sudo rm /etc/skel/pt.zip
+
 fi
 
 exit 0
