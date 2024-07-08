@@ -12,7 +12,6 @@ if ! [ -f /usr/local/sbin/done.txt ]; then
 	sudo echo "false" > /usr/local/sbin/done.txt
 	chmod a+x /usr/local/sbin/done.txt
 else
-	sudo echo "true" > /usr/local/sbin/done.txt
 	if ! cmp -s /usr/local/sbin/lab-profile-config.sh /tmp/lab-profile-config.sh; then
 	sudo echo "false" > /usr/local/sbin/done.txt
 	fi
@@ -46,6 +45,7 @@ if [ "$DONE" = "false" ]; then
 	/usr/local/sbin/lab-eula-programs.sh
 
 	echo "SCRIPTS ATUALIZADOS"
+ 	sudo echo "true" > /usr/local/sbin/done.txt
 else
 	echo "SEM NECESSIDADE DE ATUALIZAR SCRIPTS"
 fi
