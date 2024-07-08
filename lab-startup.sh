@@ -10,7 +10,7 @@ wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-eula-pro
 if ! [ -f /usr/local/sbin/done.txt ]; then
 	sudo touch /usr/local/sbin/done.txt
 	sudo echo "false" > /usr/local/sbin/done.txt
-	chmod 700 /usr/local/sbin/done.txt
+	chmod 755 /usr/local/sbin/done.txt
 else
 	if ! cmp -s /usr/local/sbin/lab-profile-config.sh /tmp/lab-profile-config.sh; then
 	sudo echo "false" > /usr/local/sbin/done.txt
@@ -34,10 +34,10 @@ if [ "$DONE" = "false" ]; then
 	sudo cp /tmp/lab-programs.sh /usr/local/sbin
 	sudo cp /tmp/lab-eula-programs.sh /usr/local/sbin
 
-	chmod 700 /usr/local/sbin/lab-profile-config.sh
-	chmod 700 /usr/local/sbin/lab-aluno-config.sh
-	chmod 700 /usr/local/sbin/lab-programs.sh
-	chmod 700 /usr/local/sbin/lab-eula-programs.sh
+	chmod 755 /usr/local/sbin/lab-profile-config.sh
+	chmod 755 /usr/local/sbin/lab-aluno-config.sh
+	chmod 755 /usr/local/sbin/lab-programs.sh
+	chmod 755 /usr/local/sbin/lab-eula-programs.sh
 
 	/usr/local/sbin/lab-profile-config.sh
 	/usr/local/sbin/lab-aluno-config.sh
