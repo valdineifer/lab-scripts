@@ -56,16 +56,34 @@ if ! [ -f /etc/mongod.conf ]; then
   sudo apt-get install -y mongodb-org -y
 fi
 
+#R
+if ! [ -f /usr/local/lib/R/done.txt ]; then
+sudo dpkg -r rstudio -y
+sudo apt remove r-base -y
+sudo apt update -qqy
+sudo apt autoremove -y
+sudo apt install --no-install-recommends software-properties-common dirmngr -y
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+sudo apt install --no-install-recommends r-base
+sudo apt install --no-install-recommends r-base-dev
+sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+sudo chmod 777 /usr/local/lib/R/site-library
+Rscript -e 'install.packages("tidyverse")'
+Rscript -e 'install.packages("shiny")'
+Rscript -e 'install.packages("shinydashboard")'
+sudo touch /usr/local/lib/R/done.txt
+fi
 
 
 # RStudio
-if ! [ -f /usr/bin/rstudio ]; then
-sudo apt update -y
-sudo apt install r-base -y
-sudo apt install gdebi-core -y
-wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
-sudo gdebi -n rstudio-2023.12.1-402-amd64.deb
-rm rstudio-2023.12.1-402-amd64.deb
+#if ! [ -f /usr/local/lib/R/done.txt]; then
+#sudo apt update -y
+#sudo apt install r-base -y
+#sudo apt install gdebi-core -y
+#wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
+#sudo gdebi -n rstudio-2023.12.1-402-amd64.deb
+#rm rstudio-2023.12.1-402-amd64.deb
 
 fi
 
