@@ -57,7 +57,7 @@ if ! [ -f /etc/mongod.conf ]; then
 fi
 
 #R
-if ! [ -f /usr/local/lib/R/done.txt ]; then
+if ! [ -f /usr/lib/R/site-library/done.txt ]; then
 sudo dpkg -r rstudio -y
 sudo apt remove r-base -y
 sudo apt update -qqy
@@ -72,7 +72,7 @@ sudo chmod 777 /usr/local/lib/R/site-library
 Rscript -e 'install.packages("tidyverse")'
 Rscript -e 'install.packages("shiny")'
 Rscript -e 'install.packages("shinydashboard")'
-sudo touch /usr/local/lib/R/done.txt
+sudo touch /usr/lib/R/site-library/done.txt
 fi
 
 
