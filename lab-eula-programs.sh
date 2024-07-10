@@ -7,9 +7,9 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
 if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
-    sudo apt install virtualbox
+    sudo apt install virtualbox -y
     echo virtualbox-ext-pack virtualbox-ext-pack/license select "true" | sudo debconf-set-selections
-    sudo apt install virtualbox-ext-pack
+    sudo apt install virtualbox-ext-pack -y
     sudo mkdir /opt/VMs
     sudo chown -R aluno:aluno /opt/VMs
 fi
