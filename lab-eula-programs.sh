@@ -10,10 +10,15 @@ if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
     sudo apt install virtualbox -y
     echo virtualbox-ext-pack virtualbox-ext-pack/license select "true" | sudo debconf-set-selections
     sudo apt install virtualbox-ext-pack -y
+<<<<<<< HEAD
     sudo mkdir -p /opt/VMs
     sudo chown -R aluno:aluno /opt/VMs
     VBoxManage setproperty machinefolder "/opt/VMs"
 
+=======
+    sudo mkdir /opt/VMs
+    sudo chown -R aluno:aluno /opt/VMs
+>>>>>>> 9b6e425a8c601ebd74c22705194fffbd51fee26d
 fi
 
 #wireshark
@@ -30,15 +35,11 @@ sudo chmod +x /usr/bin/dumpcap
 fi
 
 #CiscoPacketTracer
-
 if ! [ -d /opt/pt ]; then
 wget "https://www.dropbox.com/scl/fi/fpexy62c8mybh10k1u5h1/Packet_Tracer822_amd64_signed.deb?rlkey=1hvmun574d7p6ud4ey32xwl2j&st=6dnoy373&dl=1" -O /opt/cisco.deb
-
 cd /opt
-
 echo PacketTracer PacketTracer_822_amd64/accept-eula select "true" | sudo debconf-set-selections
 echo PacketTracer PacketTracer_822_amd64/show-eula select "false" | sudo debconf-set-selections
-
 DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
 sudo apt install -f -y
 DEBIAN_FRONTEND=noninteractive dpkg -i cisco.deb
@@ -47,7 +48,6 @@ sudo wget "https://drive.google.com/uc?export=download&id=1L01Mg96hWRpeI9LNOqzug
 cd /etc/skel
 sudo unzip pt.zip
 sudo rm /etc/skel/pt.zip
-
 fi
 
 
