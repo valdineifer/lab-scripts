@@ -7,11 +7,13 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get install mokutil
 SBDISABLED=$(mokutil --sb)
 if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
-    sudo apt-get install virtualbox
-    if [ -f /home/luis/Downloads/Linux.ova -a ! -d /opt/Linux ]; then
-        vboxmanage import /home/luis/Downloads/Linux.ova --vsys 0 --basefolder "/opt"
-	chown -R aluno:aluno /opt/Linux
-    fi
+    sudo apt install virtualbox -y
+    echo virtualbox-ext-pack virtualbox-ext-pack/license select "true" | sudo debconf-set-selections
+    sudo apt install virtualbox-ext-pack -y
+    sudo mkdir -p /opt/VMs
+    sudo chown -R aluno:aluno /opt/VMs
+    VBoxManage setproperty machinefolder "/opt/VMs"
+
 fi
 
 #wireshark
