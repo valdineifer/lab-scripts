@@ -57,7 +57,9 @@ if ! [ -f /etc/mongod.conf ]; then
 fi
 
 #R
-if ! [ -f /usr/lib/R/site-library/done.txt ]; then
+if [[ -f /usr/lib/R/site-library/done.txt || -f /usr/local/lib/R/site-library/done.txt ]]; then
+echo "R já instalado"
+else
 sudo dpkg -r rstudio -y
 sudo apt remove r-base -y
 sudo apt update -qqy
@@ -65,15 +67,19 @@ sudo apt autoremove -y
 sudo apt install --no-install-recommends software-properties-common dirmngr -y
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-sudo apt install --no-install-recommends r-base
-sudo apt install --no-install-recommends r-base-dev
-sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
-sudo chmod 777 /usr/local/lib/R/site-library
+sudo apt install --no-install-recommends r-base -y
+sudo apt install --no-install-recommends r-base-dev -y
+sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev -y
+sudo chmod 777 /usr/lib/R/site-library
 Rscript -e 'install.packages("tidyverse")'
 Rscript -e 'install.packages("shiny")'
 Rscript -e 'install.packages("shinydashboard")'
+sudo apt -y install gdebi-core
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb -O /tmp/rstudio.deb && sudo gdebi -n /tmp/rstudio.deb
 sudo touch /usr/lib/R/site-library/done.txt
+sudo touch /usr/local/lib/R/site-library/done.txt
 fi
+
 
 
 # RStudio
@@ -85,7 +91,7 @@ fi
 #sudo gdebi -n rstudio-2023.12.1-402-amd64.deb
 #rm rstudio-2023.12.1-402-amd64.deb
 
-fi
+#fi
 
 # Node
 mkdir -p /etc/apt/keyrings
@@ -172,6 +178,17 @@ fi
 if [ -f /etc/init.d/aluno.sh ]; then
   rm /etc/init.d/aluno.sh
   echo "aluno.sh removido"
+fi
+
+#unityhub
+wget -qO - https://hub.unity3d.com/linux/keys/public | gpg --dearmor | sudo tee /usr/share/keyrings/Unity_Technologies_ApS.gpg > /dev/null
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" > /etc/apt/sources.list.d/unityhub.list'
+sudo apt update
+sudo apt-get install unityhub
+
+if ! [ -d /opt/Unity ]; then
+sudo mkdir /opt/Unity
+sudo chmod a+rwx /opt/Unity
 fi
 
 
