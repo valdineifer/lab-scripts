@@ -6,6 +6,8 @@ wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-profile-
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-aluno-config.sh -O /tmp/lab-aluno-config.sh
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-programs.sh -O /tmp/lab-programs.sh
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-eula-programs.sh -O /tmp/lab-eula-programs.sh
+wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/alpha/lab-program-config.sh -O /tmp/lab-program-config.sh
+
 
 if ! [ -f /usr/local/sbin/done.txt ]; then
 	sudo touch /usr/local/sbin/done.txt
@@ -24,6 +26,9 @@ else
 	if ! cmp -s /usr/local/sbin/lab-eula-programs.sh /tmp/lab-eula-programs.sh; then
 	sudo echo "false" > /usr/local/sbin/done.txt
 	fi
+ 	if ! cmp -s /usr/local/sbin/lab-program-config.sh /tmp/lab-program-config.sh; then
+	sudo echo "false" > /usr/local/sbin/done.txt
+	fi
 fi
 
 DONE=$(cat /usr/local/sbin/done.txt)
@@ -33,16 +38,20 @@ if [ "$DONE" = "false" ]; then
 	sudo cp /tmp/lab-aluno-config.sh /usr/local/sbin
 	sudo cp /tmp/lab-programs.sh /usr/local/sbin
 	sudo cp /tmp/lab-eula-programs.sh /usr/local/sbin
+ 	sudo cp /tmp/lab-program-config.sh /usr/local/sbin
 
 	chmod 755 /usr/local/sbin/lab-profile-config.sh
 	chmod 755 /usr/local/sbin/lab-aluno-config.sh
 	chmod 755 /usr/local/sbin/lab-programs.sh
 	chmod 755 /usr/local/sbin/lab-eula-programs.sh
+ 	chmod 755 /usr/local/sbin/lab-program-config.sh
 
 	/usr/local/sbin/lab-profile-config.sh
 	/usr/local/sbin/lab-aluno-config.sh
 	/usr/local/sbin/lab-programs.sh
 	/usr/local/sbin/lab-eula-programs.sh
+ 	/usr/local/sbin/lab-program-config.sh
+ 	
 
 	echo "SCRIPTS ATUALIZADOS"
  	sudo echo "true" > /usr/local/sbin/done.txt
