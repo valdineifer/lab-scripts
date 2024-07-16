@@ -26,8 +26,6 @@ if [[ "$USER" == "aluno" ]]; then
         sudo service mysqld start
         sudo -u mysql create user 'aluno'@'localhost' identified by 'aluno';
         sudo -u grant all privileges on *.* to 'aluno'@'localhost';
-
- 	pip install podman-compose
 	
 fi
 exit 0
