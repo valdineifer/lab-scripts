@@ -2,7 +2,6 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-
 # Sublime Text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
@@ -44,9 +43,7 @@ sudo rm mysql-workbench-community.deb
 sudo apt install wine64 -y
 
 #mongodb
-
 if ! [ -f /etc/mongod.conf ]; then
-  echo "mongodb ja instalado"
   sudo apt-get install gnupg curl -y
   curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
     sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
@@ -69,29 +66,15 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 sudo apt install --no-install-recommends r-base -y
 sudo apt install --no-install-recommends r-base-dev -y
-sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev -y
-sudo chmod 777 /usr/lib/R/site-library
-Rscript -e 'install.packages("tidyverse")'
-Rscript -e 'install.packages("shiny")'
-Rscript -e 'install.packages("shinydashboard")'
-sudo apt -y install gdebi-core
+sudo apt -y install gdebi-core-
 wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb -O /tmp/rstudio.deb && sudo gdebi -n /tmp/rstudio.deb
-sudo touch /usr/lib/R/site-library/done.txt
-sudo touch /usr/local/lib/R/site-library/done.txt
 fi
 
 
-
-# RStudio
-#if ! [ -f /usr/local/lib/R/done.txt]; then
-#sudo apt update -y
-#sudo apt install r-base -y
-#sudo apt install gdebi-core -y
-#wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.1-402-amd64.deb
-#sudo gdebi -n rstudio-2023.12.1-402-amd64.deb
-#rm rstudio-2023.12.1-402-amd64.deb
-
-#fi
+if ! [ -f /usr/bin/rstudio ]; then
+sudo apt -y install gdebi-core-
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb -O /tmp/rstudio.deb && sudo gdebi -n /tmp/rstudio.deb
+fi
 
 # Node
 mkdir -p /etc/apt/keyrings
@@ -100,7 +83,7 @@ NODE_MAJOR=20
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 apt-get update
 apt-get install nodejs -y
-#
+
 mkdir -p /opt/npm
 chown -R aluno:aluno /opt/npm
 rm -f /etc/skel/.npm
@@ -185,11 +168,5 @@ wget -qO - https://hub.unity3d.com/linux/keys/public | gpg --dearmor | sudo tee 
 sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" > /etc/apt/sources.list.d/unityhub.list'
 sudo apt update
 sudo apt-get install unityhub
-
-if ! [ -d /opt/Unity ]; then
-sudo mkdir /opt/Unity
-sudo chmod a+rwx /opt/Unity
-fi
-
 
 exit 0

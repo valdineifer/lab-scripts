@@ -10,15 +10,6 @@ if [ "$SBDISABLED" = "SecureBoot disabled" ]; then
     sudo apt install virtualbox -y
     echo virtualbox-ext-pack virtualbox-ext-pack/license select "true" | sudo debconf-set-selections
     sudo apt install virtualbox-ext-pack -y
-<<<<<<< HEAD
-    sudo mkdir -p /opt/VMs
-    sudo chown -R aluno:aluno /opt/VMs
-    VBoxManage setproperty machinefolder "/opt/VMs"
-
-=======
-    sudo mkdir /opt/VMs
-    sudo chown -R aluno:aluno /opt/VMs
->>>>>>> 9b6e425a8c601ebd74c22705194fffbd51fee26d
 fi
 
 #wireshark

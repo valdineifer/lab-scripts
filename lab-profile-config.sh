@@ -48,13 +48,16 @@ if  [ -f /etc/profile.d/autologout.sh ]; then
 sudo rm -f /etc/profile.d/autologout.sh
 fi
 
+if [ -f /etc/profile.d/confif_display.sh ]; then
+sudo rm /etc/profile.d/confif_display.sh
+fi
+
 #Configuração do display
 if ! [ -f /usr/share/backgrounds/tomorrow.png ]; then
 wget "https://drive.google.com/uc?export=download&id=1wafIeHXEffGtEbRNfBcsNisgLdNXoqWq" -O /usr/share/backgrounds/tomorrow.png
 fi
 
 if ! [ -f /etc/profile.d/config_display.sh ]; then
-sudo touch /etc/profile.d/confif_display.sh
 echo "gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/tomorrow.png
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'logout'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 7200
