@@ -14,7 +14,10 @@ if [[ "$USER" == "aluno" ]]; then
  	echo export PATH="/opt/flutter/bin:\$PATH" >> /home/aluno/.bashrc
   	echo export PATH="/opt/android-studio/bin:/opt/Android/Sdk/platform-tools:\$PATH" >> /home/aluno/.bashrc
   	rm -f /opt/flutter/bin/cache/lockfile
+
    	chown -R aluno:aluno /opt/flutter
+        chown -R aluno:aluno /opt/nand2tetris
+        chown -R aluno:aluno /opt/VMs
 
    	ln -s /opt/gradle /home/$USER/.gradle
     	ln -s /opt/npm /home/$USER/.npm

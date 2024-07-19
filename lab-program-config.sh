@@ -19,7 +19,6 @@ sudo -H pip install podman-compose
 
 #virtualbox
 sudo mkdir -p /opt/VMs
-sudo chown -R aluno:aluno /opt/VMs
 vboxmanage setproperty machinefolder "/opt/VMs"
 
 #unityhub
