@@ -39,6 +39,12 @@ sudo dpkg -i mysql-workbench-community.deb
 sudo apt-get -f install -y
 sudo rm mysql-workbench-community.deb
 
+#netbeans
+sudo apt update
+sudo apt install snapd
+sudo apt install -y openjdk-17-jdk
+sudo snap install netbeans --classic
+
 #wine
 sudo apt install wine64 -y
 
