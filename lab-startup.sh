@@ -2,11 +2,11 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-profile-config.sh -O /tmp/lab-profile-config.sh
-wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-aluno-config.sh -O /tmp/lab-aluno-config.sh
-wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-programs.sh -O /tmp/lab-programs.sh
-wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-eula-programs.sh -O /tmp/lab-eula-programs.sh
-wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-program-config.sh -O /tmp/lab-program-config.sh
+wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-profile-config.sh -O /tmp/lab-profile-config.sh
+wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-aluno-config.sh -O /tmp/lab-aluno-config.sh
+wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-programs.sh -O /tmp/lab-programs.sh
+wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-eula-programs.sh -O /tmp/lab-eula-programs.sh
+wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-program-config.sh -O /tmp/lab-program-config.sh
 wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-inventory.sh -O /tmp/lab-inventory.sh
 
 

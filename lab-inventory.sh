@@ -1,3 +1,6 @@
+# Inventory Script
+# v1.0.1
+
 inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
 inventory_url='https://inventory-server-ivory.vercel.app/inventory'
 
