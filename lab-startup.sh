@@ -7,7 +7,7 @@ wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-aluno-con
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-programs.sh -O /tmp/lab-programs.sh
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-eula-programs.sh -O /tmp/lab-eula-programs.sh
 wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-program-config.sh -O /tmp/lab-program-config.sh
-wget https://raw.githubusercontent.com/valdineifer/lab-scripts/main/lab-inventory.sh -O /tmp/lab-inventory.sh
+wget https://raw.githubusercontent.com/graco-ufba/lab-scripts/main/lab-inventory.sh -O /tmp/lab-inventory.sh
 
 
 if ! [ -f /usr/local/sbin/done.txt ]; then

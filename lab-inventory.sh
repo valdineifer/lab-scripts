@@ -1,3 +1,7 @@
+# Inventory Script
+# v0.0.1
+# (add version to trigger update in 'lab-startup' cmp)
+
 inventory_path="/etc/gdm3/PostLogin/inventory_script-master"
 inventory_url='https://inventory-server-ivory.vercel.app/inventory'
 
